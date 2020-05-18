@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- Licensed to the Apache Software Foundation (ASF) under one or more
- contributor license agreements.  See the NOTICE file distributed with
- this work for additional information regarding copyright ownership.
- The ASF licenses this file to You under the Apache License, Version 2.0
- (the "License"); you may not use this file except in compliance with
- the License.  You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-      <artifactId>storm</artifactId>
-      <groupId>org.apache.storm</groupId>
-      <version>2.2.0-SNAPSHOT</version>
-      <relativePath>../../pom.xml</relativePath>
-  </parent>
 
   <artifactId>storm-starter</artifactId>
   <packaging>jar</packaging>
 
-  <name>storm-starter</name>
+  <name>storm-streaming</name>
+  <groupId>org.apache.storm</groupId>
+  <version>2.1.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,10 +15,11 @@
   </properties>
 
   <dependencies>
-    <dependency>
+   <dependency>
       <groupId>org.hdrhistogram</groupId>
       <artifactId>HdrHistogram</artifactId>
-    </dependency>
+      <version>2.1.10</version>  
+  </dependency>
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -48,10 +29,12 @@
     <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
+        <version>3.0.0</version>
     </dependency>
     <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>java-hamcrest</artifactId>
+        <version>2.0.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.easytesting</groupId>
@@ -66,25 +49,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.apache.storm</groupId>
-        <artifactId>storm-clojure</artifactId>
-        <version>${project.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.storm</groupId>
-        <artifactId>storm-clojure-test</artifactId>
-        <version>${project.version}</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.storm</groupId>
       <artifactId>storm-client</artifactId>
       <version>${project.version}</version>
-        <!--
-          Use "provided" scope to keep storm out of the jar-with-dependencies
-          For IntelliJ dev, intellij will load properly.
-        -->
-        <scope>${provided.scope}</scope>
     </dependency>
       <dependency>
           <groupId>org.apache.storm</groupId>
@@ -111,10 +78,12 @@
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
+      <version>3.2.2</version>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
+      <version>27.0.1-jre</version>
     </dependency>
     <dependency>
       <groupId>org.apache.storm</groupId>
@@ -187,35 +156,6 @@
                 </execution>
             </executions>
         </plugin>
-        <plugin>
-        <groupId>com.theoryinpractise</groupId>
-        <artifactId>clojure-maven-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <sourceDirectories>
-            <sourceDirectory>src/clj</sourceDirectory>
-          </sourceDirectories>
-          <testSourceDirectories>
-            <testSourceDirectory>test/clj</testSourceDirectory>
-          </testSourceDirectories>
-        </configuration>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>test-clojure</id>
-            <phase>test</phase>
-            <goals>
-              <goal>test</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -232,6 +172,14 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
         </plugin>
     </plugins>
   </build>
