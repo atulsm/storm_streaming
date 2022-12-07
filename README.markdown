@@ -1,5 +1,7 @@
 # Example Storm Topologies
 
+Run: java  -cp target/storm-starter-2.4.0.jar -Dstorm.local.sleeptime=20 -Dstorm.jar=target/storm-starter-2.4.0.jar org.apache.storm.LocalCluster org.apache.storm.starter.WordCountTopology
+
 Learn to use Storm!
 
 ---
